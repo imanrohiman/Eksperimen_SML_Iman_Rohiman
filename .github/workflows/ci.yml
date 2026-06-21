@@ -27,9 +27,3 @@ jobs:
       run: |
         cd MLProject
         mlflow run . --env-manager=local
-    
-    - name: Build and Push Docker image
-      run: |
-        docker build -t nuelahadl/workflow-ci:latest .
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u nuelahadl --password-stdin
-        docker push nuelahadl/workflow-ci:latest
