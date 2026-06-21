@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3 # Gunakan versi terbaru untuk keamanan dan fitur
+    - uses: actions/checkout@v3
     
     - name: Set up Python
-      uses: actions/setup-python@v4 # Gunakan versi terbaru
+      uses: actions/setup-python@v4
       with:
         python-version: '3.8'
     
@@ -23,15 +23,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install mlflow scikit-learn pandas numpy joblib
     
-    # Perbaikan: Jalankan MLflow dari dalam folder MLProject
     - name: Run MLflow Project
       run: |
         cd MLProject
         mlflow run . --env-manager=local
     
-    # Perbaikan: Gunakan username Docker Hub yang benar
     - name: Build and Push Docker image
       run: |
         docker build -t nuelahadl/workflow-ci:latest .
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u nuelahadl --password-stdin
         docker push nuelahadl/workflow-ci:latest
