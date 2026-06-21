@@ -11,7 +11,7 @@ import os
 
 def main():
     # Set tracking URI
-    mlflow.set_tracking_uri("http://localhost:5000")
+    # mlflow.set_tracking_uri("http://localhost:5000")
     
     with mlflow.start_run() as run:
         # Load preprocessed data
