@@ -21,9 +21,19 @@ def main():
         data_path = os.path.join(os.path.dirname(__file__), "../namadataset_preprocessing/data_clean.csv")
         df = pd.read_csv(data_path)
         
-        print("📊 Data shape:", df.shape)
-        print("📋 Columns:", df.columns.tolist())
-        print("🔍 Data types:\n", df.dtypes)
+        print(f"📊 Data shape before cleaning: {df.shape}")
+        
+        # 🔧 HANDLE MISSING VALUES (NaN)
+        # Untuk kolom numerik, isi dengan median
+        for col in df.select_dtypes(include=['float64', 'int64']).columns:
+            df[col].fillna(df[col].median(), inplace=True)
+        
+        # Untuk kolom kategorik (string), isi dengan mode
+        for col in df.select_dtypes(include=['object']).columns:
+            df[col].fillna(df[col].mode()[0], inplace=True)
+        
+        print(f"📊 Data shape after cleaning: {df.shape}")
+        print(f"📊 NaN count: {df.isna().sum().sum()}")
         
         # Pisahkan fitur dan target (kolom terakhir = target)
         X = df.iloc[:, :-1]
@@ -43,8 +53,8 @@ def main():
             y = le.fit_transform(y.astype(str))
             print(f"✅ Target column encoded")
         
-        print("\n📊 X shape:", X.shape)
-        print("📊 y shape:", y.shape)
+        print(f"\n📊 X shape: {X.shape}")
+        print(f"📊 y shape: {y.shape}")
         
         # Split train-test
         X_train, X_test, y_train, y_test = train_test_split(
