@@ -13,12 +13,12 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_path', type=str, default='namadataset_preprocessing/data_clean.csv')
+    parser.add_argument('--data_path', type=str, default='namadataset_preprocessing/titanic.csv')
     args = parser.parse_args()
     
     with mlflow.start_run() as run:
         # Load preprocessed data
-        data_path = os.path.join(os.path.dirname(__file__), "../namadataset_preprocessing/data_clean.csv")
+        data_path = os.path.join(os.path.dirname(__file__), "../namadataset_preprocessing/titanic.csv")
         df = pd.read_csv(data_path)
         
         print(f"📊 Data shape before cleaning: {df.shape}")
