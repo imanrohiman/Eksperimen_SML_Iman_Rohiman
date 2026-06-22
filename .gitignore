@@ -1,2 +1,39 @@
+# Virtual Environment
+venv/
+env/
+myproject_env/
+
+# MLflow
 mlruns/
-mlflow*.db
+mlflow.db
+mlflow.db.bak
+mlflow_new.db
+
+# Screenshots (opsional, besar)
+*.jpg
+*.png
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual Environment
+venv/
+env/
+myproject_env/
+
+# MLflow
+mlruns/
+mlflow.db
+mlflow.db.bak
+mlflow_new.db
+
+# Screenshots
+*.jpg
+*.png
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
