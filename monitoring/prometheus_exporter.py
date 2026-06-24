@@ -7,7 +7,6 @@ PREDICTION_COUNT = Counter("prediction_count_total", "Total prediksi model")
 INFERENCE_TIME = Histogram("inference_duration_seconds", "Waktu inference model")
 
 start_http_server(8001)
-
 print("Exporter running on port 8001")
 
 def mock_inference():
@@ -21,3 +20,5 @@ while True:
     INFERENCE_TIME.observe(time.time() - start)
 
     PREDICTION_COUNT.inc()
+
+    time.sleep(2)   # 🔥 INI WAJIB DITAMBAH
