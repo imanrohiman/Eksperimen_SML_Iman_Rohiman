@@ -25,7 +25,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy scikit-learn joblib mlflow setuptools wheel
 
-      - name: Run training
+      - name: Run MLflow Project
         run: |
-          cd MLProject
-          python modelling.py
+          mlflow run MLProject --env-manager=local
